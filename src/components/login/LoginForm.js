@@ -1,47 +1,56 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { TOKEN_POST, USER_GET } from '../../api'
+import useForm from '../../Hooks/useForm'
+import Button from '../forms/Button'
+import Input from '../forms/Input'
 
 
 const LoginForm = () => {
-  const [username, setUsername] = React.useState('')
-  const [password, setPassword] = React.useState('')
+  const username = useForm()
+  const password = useForm()
+
+  React.useEffect(() => {
+    const token = window.localStorage.getItem('token')
+    if(token) {
+      getUser(token)
+    }
+
+  }, [])
+  
+  async function getUser (token) {
+    const {url, options} = USER_GET(token)
+    
+    const response = await fetch(url, options)
+    const data = await response.json()
+    console.log(data)
+
+  }
+
 
  async function handleSubmit (event) {
     event.preventDefault()
-    const response = await fetch('https://dogsapi.origamid.dev/json/jwt-auth/v1/token', {
-        method: 'POST',
-        headers: {
-          'Content-Type':'application/json'
-        },
-        body: JSON.stringify({
-            username,
-            password
-        })
-    })
-    console.log(response)
+    
+    if(username.validate() && password.validate()) {
+    const {url, options} = TOKEN_POST({username: username.value, password: password.value})
+    
+    const response = await fetch(url, options)
     const data = await response.json()
-    console.log(data)
+    window.localStorage.setItem('token', data.token)
+    console.log(data);
+    getUser(data.token)   
    
-
+  }
   }
 
   return (
     <section onSubmit={handleSubmit}>
       <h1>Login</h1>
       <form>
-       <input 
-       type='text'
-       value={username}
-       onChange={({target}) => {setUsername(target.value)}}
-       
-       />
-        <input 
-       type='text'
-       value={password}
-       onChange={({target}) => {setPassword(target.value)}}
-       
-       />
-       <button>Entrar</button>
+       <Input label='Usuário' type='text'name='username' {...username}/>
+       <Input label='Senha' type='password' name='password' {...password}/>
+      
+       <Button>Entrar</Button>
       </form>
       <Link to='/login/criar'>Cadastro</Link>
 
