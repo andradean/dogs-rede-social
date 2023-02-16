@@ -75,6 +75,8 @@ React.useEffect(() => {
             setLoading(false)   
   
           }
+        } else {
+          setLogin(false)
         }
       }
       autoLogin()
