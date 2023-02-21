@@ -140,3 +140,30 @@ export function PASSWORD_LOST(body) {
         },
 }
 }
+
+export function PASSWORD_RESET(body) {
+    return {
+        url: `${apiURL}/api/password/reset `,
+        options: {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+
+            },
+            body: JSON.stringify(body)
+        },
+}
+}
+
+export function STATS_GET() {
+    return {
+        url: `${apiURL}/api/stats`,
+        options: {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+
+            },
+        },
+}
+}

@@ -86,3 +86,17 @@ a {
         transform: initial;
     }
 }
+
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh + 10rem);
+}
+
+.Appbody {
+    flex: 1;
+}
+
+.victoryContainer {
+    height: initial !important;
+}

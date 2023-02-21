@@ -5,6 +5,7 @@ import useForm from '../../Hooks/useForm'
 import Button from '../forms/Button'
 import Input from '../forms/Input'
 import Error from '../helper/Error'
+import Head from '../helper/Head'
 
 const LoginLost = () => {
   const login = useForm()
@@ -19,8 +20,9 @@ const LoginLost = () => {
   }
 
   return (
-    <section>
-      <h1 className='title'>Esqueceu a senha ?</h1>
+    <section className='animeLeft'>
+      <Head title='Esqueceu a senha'/>
+      <h1 className='title'>Esqueceu a senha?</h1>
       {data ? (<p style={{color:'#4c1'}}>{data}</p>) : 
       (<form onSubmit={handleSubmit}>
         <Input label='Email / Usuário' type='text' name='email'  {...login}/>
