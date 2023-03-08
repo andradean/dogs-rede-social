@@ -1,8 +1,9 @@
 export const apiURL = 'https://dogsapi.origamid.dev/json'
+export const apiURLdg= 'http://localhost:8000'
 
 export function TOKEN_POST (body) {
     return {
-        url: `${apiURL}/jwt-auth/v1/token`,
+        url: `${apiURLdg}/jwt-auth/v1/token`,
         options: {
             method: 'POST',
             headers: {
@@ -16,7 +17,7 @@ export function TOKEN_POST (body) {
 }
 export function TOKEN_VALIDATE_POST (token) {
     return {
-        url: `${apiURL}/jwt-auth/v1/token/validate`,
+        url: `${apiURLdg}/jwt-auth/v1/token/validate`,
         options: {
             method: 'POST',
             headers: {
@@ -30,7 +31,7 @@ export function TOKEN_VALIDATE_POST (token) {
 
 export function USER_GET (token) {
     return {
-        url: `${apiURL}/api/user`,
+        url: `${apiURLdg}/api/user`,
         options: {
             method: 'GET',
             headers: {
@@ -43,10 +44,10 @@ export function USER_GET (token) {
     }
 }
 
-
+ 
 export function USER_POST (body) {
     return {
-        url: `${apiURL}/api/user`,
+        url: `${apiURLdg}/api/user`,
         options: {
             method: 'POST',
             headers: {
@@ -62,7 +63,7 @@ export function USER_POST (body) {
 
 export function PHOTO_POST (formData, token) {
     return {
-        url: `${apiURL}/api/photo`,
+        url: `${apiURLdg}/api/photo`,
         options: {
             method: 'POST',
             headers: {
@@ -78,7 +79,7 @@ export function PHOTO_POST (formData, token) {
 
 export function PHOTOS_GET ({page, total, user}) {
     return {
-        url: `${apiURL}/api/photo/?_page=${page}&_total=${total}&_user=${user} `,
+        url: `${apiURLdg}/api/photo/?_page=${page}&_total=${total}&_user=${user} `,
         options: {
             method: 'GET',
             cache: 'no-store'      
@@ -89,7 +90,7 @@ export function PHOTOS_GET ({page, total, user}) {
 
 export function PHOTO_GET (id) {
     return {
-        url: `${apiURL}/api/photo/${id} `,
+        url: `${apiURLdg}/api/photo/${id} `,
         options: {
             method: 'GET',
             cache: 'no-store'      

@@ -34,6 +34,7 @@ const UserPhotoPost = () => {
     formData.append('peso', peso.value)
     
     const token = window.localStorage.getItem('token')
+    console.log(formData)
     const {url, options} = PHOTO_POST(formData, token)
     request(url, options)
 
